@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Papadimitriou"
+    given-names: "Vassilis"
+    orcid: "https://orcid.org/0009-0004-3816-872X"
+title: "Schensted’s Algorithm for Longest Increasing Subsequence on Two Threads"
+version: "1.0.0"
+date-released: "2026-07-22"
+url: "https://github.com/etherwalker/LLIS_Schensted_2T"
+repository-code: "https://github.com/etherwalker/LLIS_Schensted_2T"
+keywords:
+  - "longest increasing subsequence"
+  - "parallel algorithms"
+  - "schensted algorithm"
+  - "cache rescue"
+license: "MIT"
