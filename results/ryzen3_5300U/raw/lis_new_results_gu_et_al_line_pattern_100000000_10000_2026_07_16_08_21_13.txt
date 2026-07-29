@@ -1,0 +1,21 @@
+LLIS_Schensted_1T n: 100000000
+0 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 1 times: 4823.711 4821.140 4820.066 4826.209 4825.151  lis_len: 1251
+1 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 10 times: 4825.717 4824.607 4823.456 4824.898 4825.901  lis_len: 1252
+2 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 100 times: 4824.237 4825.641 4826.097 4824.862 4825.610  lis_len: 1262
+3 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 1000 times: 4830.822 4828.807 4829.950 4829.136 4830.295  lis_len: 1376
+4 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 10000 times: 4802.358 4802.448 4805.634 4804.186 4806.304  lis_len: 2501
+5 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 100000 times: 4963.604 4962.837 4960.909 4965.186 4958.916  lis_len: 13750
+6 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 1000000 times: 5038.502 5039.179 5038.091 5042.059 5043.210  lis_len: 120893
+7 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 10000000 times: 4613.285 4618.463 4615.198 4615.844 4613.442  lis_len: 551587
+8 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 100000000 times: 4181.194 4186.009 4198.104 4188.294 4194.043  lis_len: 1938891
+
+LLIS_Schensted_2T n: 100000000
+0 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 1 times: 2412.459 2412.607 2411.274 2412.651 2411.804  lis_len: 1251
+1 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 10 times: 2411.256 2411.477 2411.558 2412.273 2411.741  lis_len: 1252
+2 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 100 times: 2413.008 2412.351 2413.076 2413.074 2411.759  lis_len: 1262
+3 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 1000 times: 2416.271 2415.657 2415.997 2415.979 2415.304  lis_len: 1376
+4 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 10000 times: 2404.227 2404.179 2404.330 2405.409 2400.298  lis_len: 2501
+5 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 100000 times: 2450.302 2451.570 2451.137 2446.896 2443.857  lis_len: 13750
+6 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 1000000 times: 2477.839 2480.059 2482.344 2478.574 2480.674  lis_len: 120893
+7 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 10000000 times: 2256.057 2257.285 2256.305 2256.458 2256.520  lis_len: 551587
+8 gu_et_all line pattern param upper_limit: 100000000 param offset: 10000 param lis_len: 100000000 times: 2064.389 2061.892 2057.821 2054.978 2058.071  lis_len: 1938891
