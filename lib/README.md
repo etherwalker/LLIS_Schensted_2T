@@ -39,7 +39,8 @@ int main()
 }
 ```
 
-## Compilation
+## Compilation and execution
 ```bash
 g++ -O3 -std=c++11 example.cpp -pthread -o example
+./example
 ```
