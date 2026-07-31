@@ -3,7 +3,7 @@
 ![Language](https://img.shields.io/badge/C%2B%2B-11%2B-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Linux%20%2F%20x86__64-lightgrey.svg)
 ![Architecture](https://img.shields.io/badge/Architecture-Lock--Free-success.svg)
-[![DOI](https://zenodo.org/badge/1315429849.svg)](https://doi.org/10.5281/zenodo.21681413)
+[![DOI](https://zenodo.org/badge/1315429849.svg)](https://doi.org/10.5281/zenodo.21724295)
 
 ## Quick Start
 
