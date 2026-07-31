@@ -37,6 +37,9 @@ int main()
 
     return 0;
 }
+```
 
 ## Compilation
+```bash
 g++ -O3 -std=c++11 example.cpp -pthread -o example
+```
