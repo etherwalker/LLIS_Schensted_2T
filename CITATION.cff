@@ -7,7 +7,7 @@ authors:
 title: "Schensted's Algorithm for Longest Increasing Subsequence on Two Threads"
 version: "1.1.0"
 date-released: "2026-07-31"
-doi: "10.5281/zenodo.21681413"
+doi: "10.5281/zenodo.21724295"
 url: "https://github.com/etherwalker/LLIS_Schensted_2T"
 repository-code: "https://github.com/etherwalker/LLIS_Schensted_2T"
 keywords:
