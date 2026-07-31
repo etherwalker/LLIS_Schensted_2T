@@ -281,7 +281,7 @@ Run:
 Under the hood, this script executes the following command, ensuring maximum compiler optimizations (-O3) and host-specific architecture tuning (-march=native):
 
 ```bash
-g++ -O3 -march=native -Wall -Wextra -Wconversion -pedantic ../src/test_lis.cpp -o test_lis
+g++ -O3 -march=native -std=c++11 -Wall -Wextra -Wconversion -pedantic ../src/test_lis.cpp -pthread -o test_lis
 ```
 
 ### 01 Enable perfomance mode
