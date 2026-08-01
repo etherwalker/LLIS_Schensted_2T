@@ -1,3 +1,12 @@
+/*
+ * schensted.hpp
+ *
+ * This file is part of the following repository:
+ * https://github.com/etherwalker/LLIS_Schensted_2T
+ *
+ */
+
+
 #ifndef SCHENSTED_HPP
 #define SCHENSTED_HPP
 
