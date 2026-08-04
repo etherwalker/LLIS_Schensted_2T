@@ -15,11 +15,11 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Compile C++ program
-      run: g++ -O3 test_lis.cpp -o test_lis
+      run: g++ -O3 src/test_lis.cpp -o scripts/test_lis
 
     # Εμφάνιση του stdout στα logs αυτού του βήματος
     - name: Execute program
-      run: ./test_lis
+      run: scripts/test_lis
 
     # Εντοπισμός και ανέβασμα του αρχείου κειμένου που δημιουργήθηκε
     - name: Upload output file
