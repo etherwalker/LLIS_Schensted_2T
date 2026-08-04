@@ -183,7 +183,7 @@ The application of the modulo operator mathematically bounds the alphabet size o
 
 #### 2. Performance Graph
 <p align="left">
-  <img src="/results/ryzen3_5300U/plots/range_pattern_100000000_100000000.jpg" alt="Performance Comparison: Range Pattern" width="600"/>
+  <img src="results/ryzen3_5300U/plots/range_pattern_100000000_100000000.jpg" alt="Performance Comparison: Range Pattern" width="600"/>
   <br>
   <em><b>Figure 1:</b> Execution time and speedup comparison for the Range pattern (N=10<sup>8</sup>).</em>
 </p>
@@ -229,7 +229,7 @@ In this equation, $t$ represents the slope of the increasing line, and $b_i$ is 
 
 #### 2. Performance Graph
 <p align="left">
-  <img src="/results/ryzen3_5300U/plots/line_pattern_100000000_10000.jpg" alt="Performance Comparison: Line Pattern" width="600"/>
+  <img src="results/ryzen3_5300U/plots/line_pattern_100000000_10000.jpg" alt="Performance Comparison: Line Pattern" width="600"/>
   <br>
   <em><b>Figure 2:</b> Execution time and speedup comparison for the Line pattern (N=10<sup>8</sup>, offset 10000).</em>
 </p>
