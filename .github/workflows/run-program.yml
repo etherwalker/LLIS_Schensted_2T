@@ -1,0 +1,29 @@
+name: Run C++ Program Manually
+
+on:
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch: # Επιτρέπει τη χειροκίνητη εκτέλεση
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+
+    - name: Compile C++ program
+      run: g++ -O3 test_lis.cpp -o test_lis
+
+    # Εμφάνιση του stdout στα logs αυτού του βήματος
+    - name: Execute program
+      run: ./test_lis
+
+    # Εντοπισμός και ανέβασμα του αρχείου κειμένου που δημιουργήθηκε
+    - name: Upload output file
+      uses: actions/upload-artifact@v4
+      with:
+        name: program-output-file
+        path: "*.txt"            
