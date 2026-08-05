@@ -4,7 +4,7 @@ on:
   # push:
   #   branches:
   #     - main
-  workflow_dispatch: # Επιτρέπει τη χειροκίνητη εκτέλεσ
+  workflow_dispatch:
 
 jobs:
   build-and-run:
@@ -21,16 +21,42 @@ jobs:
             echo "=== MEMORY INFO ==="
             free -h
 
+    
+    - name: Initialize Eco-CI
+      uses: green-coding-solutions/eco-ci-energy-estimation@v1
+      with:
+        task: initialize
+   
+
     - name: Compile C++ program
       run: g++ -O3 -march=native -std=c++11 src/test_lis.cpp -o scripts/test_lis
 
-    # Εμφάνιση του stdout στα logs αυτού του βήματος
+
+    - name: Start Energy Measurement
+      uses: green-coding-solutions/eco-ci-energy-estimation@v1
+      with:
+        task: start-measurement
+
+    
     - name: Execute program
       run: scripts/test_lis
 
-    # Εντοπισμός και ανέβασμα του αρχείου κειμένου που δημιουργήθηκε
+    
+    - name: Get Energy Measurement
+      uses: green-coding-solutions/eco-ci-energy-estimation@v1
+      with:
+        task: get-measurement
+        label: 'C++ Compile and Execution'
+
+    
+    - name: Display Final Energy Results
+      uses: green-coding-solutions/eco-ci-energy-estimation@v1
+      with:
+        task: display-results
+
+    
     - name: Upload output file
       uses: actions/upload-artifact@v4
       with:
         name: program-output-file
-        path: "*.txt"            
+        path: "*.txt"
