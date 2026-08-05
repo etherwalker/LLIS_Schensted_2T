@@ -59,6 +59,7 @@ jobs:
         task: display-results
         send-data: false
         display-table: true
+        json-output: true
 
     - name: Calculate, Compare and Generate Summary
       shell: python
@@ -68,8 +69,7 @@ jobs:
         import sys
 
         try:
-            # Διαβάζουμε απευθείας το εσωτερικό αρχείο που δημιουργεί το Eco-CI στον runner
-            with open('/tmp/eco-ci/total-data.json', 'r') as f:
+            with open('eco-ci-total-data.json', 'r') as f:
                 data = json.load(f)
             
             measurements = data.get('measurements', [])
