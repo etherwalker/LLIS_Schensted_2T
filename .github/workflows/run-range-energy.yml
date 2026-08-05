@@ -1,3 +1,58 @@
+name: Run range pattern and measure energy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Upgrade pip
+      run: |
+        python -m pip install --upgrade pip
+
+    - name: Inspect hardware specs
+      run: |
+            echo "=== CPU INFO ==="
+            lscpu | grep -E "Model name|Core\(s\) per socket|Thread\(s\) per core|Architecture"
+            echo "=== MEMORY INFO ==="
+            free -h
+
+    - name: Compile C++ program
+      run: g++ -O3 -march=native -std=c++11 src/test_lis.cpp -o scripts/test_lis
+
+    - name: Start Energy Measurement
+      uses: green-coding-solutions/eco-ci-energy-estimation@v5
+      with:
+        task: start-measurement
+
+    - name: Execute program with 1T
+      run: scripts/test_lis -size 1000000 -upper_limit 1000000 -algo 1T
+
+    - name: Get Energy Measurement for 1T
+      uses: green-coding-solutions/eco-ci-energy-estimation@v5
+      with:
+        task: get-measurement
+        label: 'C++ Execution 1T'
+
+    - name: Execute program with 2T
+      run: scripts/test_lis -size 1000000 -upper_limit 1000000 -algo 2T
+
+    - name: Get Energy Measurement for 2T
+      uses: green-coding-solutions/eco-ci-energy-estimation@v5
+      with:
+        task: get-measurement
+        label: 'C++ Execution 2T'
+
     - name: Display Final Energy Results
       id: ecoci
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
@@ -5,12 +60,11 @@
         task: display-results
         send-data: false
         display-table: true
-        json-output: true # <--- ΕΔΩ: Ενεργοποιούμε το JSON output
+        json-output: true
 
     - name: Calculate, Compare and Generate Summary
       shell: python
       env:
-        # ΕΔΩ: Διαβάζουμε το σωστό output 'data-total-json'
         ECO_DATA: ${{ steps.ecoci.outputs.data-total-json }}
       run: |
         import json
@@ -68,3 +122,11 @@
         except Exception as e:
             print(f"Error executing analysis script: {e}")
             sys.exit(1)
+
+    - name: Upload output files
+      uses: actions/upload-artifact@v4
+      with:
+        name: program-output-and-energy
+        path: |
+          *.txt
+          energy_metrics.json
