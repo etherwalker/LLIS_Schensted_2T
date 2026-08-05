@@ -1,4 +1,4 @@
-name: Run line pattern (offset 0) and measure energy
+name: Run line pattern (offset: 0) and measure energy
 
 on:
   workflow_dispatch:
