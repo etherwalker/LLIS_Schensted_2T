@@ -36,7 +36,7 @@ jobs:
         task: start-measurement
 
     - name: Execute program with 1T
-      run: scripts/test_lis -size 1000000 -upper_limit 1000000 -algo 1T
+      run: scripts/test_lis -size 100000 -upper_limit 1000000 -algo 1T
 
     - name: Get Energy Measurement for 1T
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
@@ -45,7 +45,7 @@ jobs:
         label: 'C++ Execution 1T'
 
     - name: Execute program with 2T
-      run: scripts/test_lis -size 1000000 -upper_limit 1000000 -algo 2T
+      run: scripts/test_lis -size 100000 -upper_limit 1000000 -algo 2T
 
     - name: Get Energy Measurement for 2T
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
@@ -54,12 +54,19 @@ jobs:
         label: 'C++ Execution 2T'
 
     - name: Display Final Energy Results
+      id: ecoci
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
       with:
         task: display-results
         send-data: false
         display-table: true
         json-output: true
+
+    - name: Save JSON Data
+      run: |
+        cat << 'EOF' > eco-ci-raw.json
+        ${{ steps.ecoci.outputs.data-total-json }}
+        EOF
 
     - name: Calculate, Compare and Generate Summary
       shell: python
@@ -69,8 +76,11 @@ jobs:
         import sys
 
         try:
-            with open('eco-ci-total-data.json', 'r') as f:
-                data = json.load(f)
+            with open('eco-ci-raw.json', 'r', encoding='utf-8') as f:
+                content = f.read().strip()
+                if not content:
+                    raise ValueError("The eco-ci-raw.json file is empty.")
+                data = json.loads(content)
             
             measurements = data.get('measurements', [])
             
