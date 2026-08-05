@@ -1,4 +1,4 @@
-name: Run 1T and measure energy
+name: Run 1T for range and measure energy
 
 on:
   workflow_dispatch:
