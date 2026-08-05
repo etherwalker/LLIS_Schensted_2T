@@ -1,4 +1,4 @@
-name: Run 1T for range and measure energy
+name: Run 1T for range pattern and measure energy
 
 on:
   workflow_dispatch:
@@ -36,7 +36,7 @@ jobs:
         task: start-measurement
 
     - name: Execute program
-      run: scripts/test_lis -algo=1T
+      run: scripts/test_lis -algo 1T
 
     - name: Get Energy Measurement
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
