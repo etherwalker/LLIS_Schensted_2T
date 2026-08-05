@@ -1,4 +1,4 @@
-name: Run 1T and 2T for range pattern and measure energy
+name: Run range pattern and measure energy
 
 on:
   workflow_dispatch:
@@ -30,13 +30,11 @@ jobs:
     - name: Compile C++ program
       run: g++ -O3 -march=native -std=c++11 src/test_lis.cpp -o scripts/test_lis
 
-    
     - name: Start Energy Measurement
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
       with:
         task: start-measurement
 
-    
     - name: Execute program with 1T
       run: scripts/test_lis -algo 1T
 
@@ -46,7 +44,6 @@ jobs:
         task: get-measurement
         label: 'C++ Execution 1T'
 
-    
     - name: Execute program with 2T
       run: scripts/test_lis -algo 2T
 
@@ -56,7 +53,6 @@ jobs:
         task: get-measurement
         label: 'C++ Execution 2T'
 
-    
     - name: Display Final Energy Results
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
       with:
@@ -67,7 +63,69 @@ jobs:
     - name: Export Energy Data to File
       run: |
         echo '${{ env.ECO_CI_ENERGY_DATA }}' > energy_metrics.json
-        cat energy_metrics.json
+
+    - name: Calculate, Compare and Generate Summary
+      shell: python
+      run: |
+        import json
+        import os
+
+        try:
+            
+            with open('energy_metrics.json', 'r') as f:
+                data = json.load(f)
+            
+            measurements = data.get('measurements', [])
+            
+            
+            for measurement in measurements:
+                energy_j = measurement.get('energy_j', 0.0)
+                duration_ms = measurement.get('duration_ms', 0.0)
+                duration_s = duration_ms / 1000.0
+                
+                measurement['edp_js'] = energy_j * duration_s
+                measurement['ed2p_js2'] = energy_j * (duration_s ** 2)
+                measurement['duration_s'] = duration_s
+
+            
+            with open('energy_metrics.json', 'w') as f:
+                json.dump(data, f, indent=2)
+
+            
+            summary_path = os.environ.get('GITHUB_STEP_SUMMARY')
+            if summary_path:
+                with open(summary_path, 'w', encoding='utf-8') as sf:
+                    sf.write("# 📊 Energy & Performance Analysis Report\n\n")
+                    sf.write("Ανάλυση αποδοτικότητας και trade-offs ανάμεσα στις εκτελέσεις.\n\n")
+                    
+                    # Πίνακας Αποτελεσμάτων
+                    sf.write("### 📈 Συγκεντρωτικός Πίνακας Μέτρησης\n")
+                    sf.write("| Label | Ενέργεια (J) | Χρόνος (s) | EDP (J·s) | ED²P (J·s²) |\n")
+                    sf.write("| :--- | :---: | :---: | :---: | :---: |\n")
+                    
+                    for m in measurements:
+                        sf.write(f"| {m['label']} | {m['energy_j']:.4f} | {m['duration_s']:.4f} | {m['edp_js']:.6f} | {m['ed2p_js2']:.8f} |\n")
+                    
+                    sf.write("\n")
+
+                    # Σύγκριση και ανάδειξη βέλτιστου (αν υπάρχουν τουλάχιστον 2 μετρήσεις)
+                    if len(measurements) >= 2:
+                        sf.write("### 🏆 Ανάλυση & Βέλτιστες Επιλογές\n")
+                        
+                        best_time = min(measurements, key=lambda x: x['duration_s'])
+                        best_energy = min(measurements, key=lambda x: x['energy_j'])
+                        best_edp = min(measurements, key=lambda x: x['edp_js'])
+                        best_ed2p = min(measurements, key=lambda x: x['ed2p_js2'])
+                        
+                        sf.write(f"* **🚀 Ταχύτερη Εκτέλεση (Delay):** `{best_time['label']}` ({best_time['duration_s']:.4f} s)\n")
+                        sf.write(f"* **🌱 Πράσινη Εκτέλεση (Energy):** `{best_energy['label']}` ({best_energy['energy_j']:.4f} J)\n")
+                        sf.write(f"* **⚖️ Καλύτερο Trade-off (EDP):** `{best_edp['label']}` ({best_edp['edp_js']:.6f} J·s) — *Ισορροπία ενέργειας και απόδοσης.*\n")
+                        sf.write(f"* **🏎️ Έμφαση στην Ταχύτητα (ED²P):** `{best_ed2p['label']}` ({best_ed2p['ed2p_js2']:.8f} J·s²) — *Αυστηρή ποινή στην καθυστέρηση.*\n")
+            
+            print("Successfully updated metrics and generated GitHub summary.")
+            
+        except Exception as e:
+            print(f"Error executing analysis script: {e}")
 
     - name: Upload output files
       uses: actions/upload-artifact@v4
