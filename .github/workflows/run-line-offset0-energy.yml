@@ -38,7 +38,7 @@ jobs:
 
     
     - name: Execute program with 1T
-      run: scripts/test_lis -size 100000000 -trials 5 -pattern line -offset 10000 -algo 1T
+      run: scripts/test_lis -size 100000000 -trials 5 -pattern line -offset 0 -algo 1T
 
     - name: Get Energy Measurement for 1T
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
@@ -48,7 +48,7 @@ jobs:
 
     
     - name: Execute program with 2T
-      run: scripts/test_lis -size 100000000 -trials 5 -pattern line -offset 10000 -algo 2T
+      run: scripts/test_lis -size 100000000 -trials 5 -pattern line -offset 0 -algo 2T
 
     - name: Get Energy Measurement for 2T
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
