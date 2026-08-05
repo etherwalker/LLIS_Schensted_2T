@@ -36,7 +36,7 @@ jobs:
         task: start-measurement
 
     - name: Execute program with 1T
-      run: scripts/test_lis -algo 1T
+      run: scripts/test_lis -size 100000 -upper_limit 1000000 -algo 1T
 
     - name: Get Energy Measurement for 1T
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
@@ -45,7 +45,7 @@ jobs:
         label: 'C++ Execution 1T'
 
     - name: Execute program with 2T
-      run: scripts/test_lis -algo 2T
+      run: scripts/test_lis -size 100000 -upper_limit 1000000 -algo 2T
 
     - name: Get Energy Measurement for 2T
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
