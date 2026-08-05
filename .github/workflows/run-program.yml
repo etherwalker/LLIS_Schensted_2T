@@ -1,9 +1,6 @@
 name: Run C++ Program Manually
 
 on:
-  # push:
-  #   branches:
-  #     - main
   workflow_dispatch:
 
 jobs:
@@ -21,42 +18,39 @@ jobs:
             echo "=== MEMORY INFO ==="
             free -h
 
-    
-    - name: Initialize Eco-CI
-      uses: green-coding-solutions/eco-ci-energy-estimation@v1
-      with:
-        task: initialize
-   
-
     - name: Compile C++ program
       run: g++ -O3 -march=native -std=c++11 src/test_lis.cpp -o scripts/test_lis
-
 
     - name: Start Energy Measurement
       uses: green-coding-solutions/eco-ci-energy-estimation@v1
       with:
         task: start-measurement
 
-    
     - name: Execute program
       run: scripts/test_lis
 
-    
     - name: Get Energy Measurement
       uses: green-coding-solutions/eco-ci-energy-estimation@v1
       with:
         task: get-measurement
-        label: 'C++ Compile and Execution'
+        label: 'C++ Execution Only'
 
-    
     - name: Display Final Energy Results
       uses: green-coding-solutions/eco-ci-energy-estimation@v1
       with:
         task: display-results
+        send-data: false
+        display-table: true
 
-    
-    - name: Upload output file
+    - name: Export Energy Data to File
+      run: |
+        echo '${{ env.ECO_CI_ENERGY_DATA }}' > energy_metrics.json
+        cat energy_metrics.json
+
+    - name: Upload output files
       uses: actions/upload-artifact@v4
       with:
-        name: program-output-file
-        path: "*.txt"
+        name: program-output-and-energy
+        path: |
+          *.txt
+          energy_metrics.json
