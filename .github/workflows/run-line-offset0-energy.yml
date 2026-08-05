@@ -64,15 +64,10 @@ jobs:
         send-data: false
         display-table: true
 
-    - name: Export Energy Data to File
-      run: |
-        echo '${{ env.ECO_CI_ENERGY_DATA }}' > energy_metrics.json
-        cat energy_metrics.json
 
     - name: Upload output files
       uses: actions/upload-artifact@v4
       with:
         name: program-output-and-energy
         path: |
-          *.txt
-          energy_metrics.json
+          *.txt         
