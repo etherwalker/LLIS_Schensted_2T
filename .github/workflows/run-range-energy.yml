@@ -36,7 +36,7 @@ jobs:
         task: start-measurement
 
     - name: Execute program with 1T
-      run: scripts/test_lis -algo 1T
+      run: scripts/test_lis -size 1000000 -pattern range -trials 5 -algo 1T
 
     - name: Get Energy Measurement for 1T
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
@@ -45,7 +45,7 @@ jobs:
         label: 'C++ Execution 1T'
 
     - name: Execute program with 2T
-      run: scripts/test_lis -algo 2T
+      run: scripts/test_lis -size 1000000 -pattern range -trials 5 -algo 2T
 
     - name: Get Energy Measurement for 2T
       uses: green-coding-solutions/eco-ci-energy-estimation@v5
@@ -61,22 +61,22 @@ jobs:
         display-table: true
 
     - name: Export Energy Data to File
-      run: |
-        echo '${{ env.ECO_CI_ENERGY_DATA }}' > energy_metrics.json
+      uses: green-coding-solutions/eco-ci-energy-estimation@v5
+      with:
+        task: export-results
 
     - name: Calculate, Compare and Generate Summary
       shell: python
       run: |
         import json
         import os
+        import sys
 
         try:
-            
-            with open('energy_metrics.json', 'r') as f:
+            with open('eco-ci-output.json', 'r') as f:
                 data = json.load(f)
             
             measurements = data.get('measurements', [])
-            
             
             for measurement in measurements:
                 energy_j = measurement.get('energy_j', 0.0)
@@ -87,18 +87,15 @@ jobs:
                 measurement['ed2p_js2'] = energy_j * (duration_s ** 2)
                 measurement['duration_s'] = duration_s
 
-            
-            with open('energy_metrics.json', 'w') as f:
+            with open('eco-ci-output.json', 'w') as f:
                 json.dump(data, f, indent=2)
 
-            
             summary_path = os.environ.get('GITHUB_STEP_SUMMARY')
             if summary_path:
-                with open(summary_path, 'w', encoding='utf-8') as sf:
+                with open(summary_path, 'a', encoding='utf-8') as sf:
                     sf.write("# 📊 Energy & Performance Analysis Report\n\n")
                     sf.write("Ανάλυση αποδοτικότητας και trade-offs ανάμεσα στις εκτελέσεις.\n\n")
                     
-                    # Πίνακας Αποτελεσμάτων
                     sf.write("### 📈 Συγκεντρωτικός Πίνακας Μέτρησης\n")
                     sf.write("| Label | Ενέργεια (J) | Χρόνος (s) | EDP (J·s) | ED²P (J·s²) |\n")
                     sf.write("| :--- | :---: | :---: | :---: | :---: |\n")
@@ -108,7 +105,6 @@ jobs:
                     
                     sf.write("\n")
 
-                    # Σύγκριση και ανάδειξη βέλτιστου (αν υπάρχουν τουλάχιστον 2 μετρήσεις)
                     if len(measurements) >= 2:
                         sf.write("### 🏆 Ανάλυση & Βέλτιστες Επιλογές\n")
                         
@@ -126,6 +122,7 @@ jobs:
             
         except Exception as e:
             print(f"Error executing analysis script: {e}")
+            sys.exit(1)
 
     - name: Upload output files
       uses: actions/upload-artifact@v4
@@ -133,4 +130,4 @@ jobs:
         name: program-output-and-energy
         path: |
           *.txt
-          energy_metrics.json
+          eco-ci-output.json
