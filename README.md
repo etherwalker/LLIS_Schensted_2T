@@ -1,4 +1,4 @@
-# Schensted’s Algorithm for LIS on Two Threads
+# Schensted’s Algorithm for Longest Increasing Subsequence (LIS) on Two Threads
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Language](https://img.shields.io/badge/C%2B%2B-11%2B-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Linux%20%2F%20x86__64-lightgrey.svg)
@@ -32,7 +32,7 @@ The modern parallel state-of-the-art (SOTA) approach by [Gu et al. (2023)](https
 * Encounters parallelism limitations on data with bounded disorder: for large LIS lengths ($k$), their span of $O(k)$ reduces available parallelism, making their 192-thread execution slower than the single-threaded sequential baseline.
 * According to the authors, prior to their work, they were not aware of any parallel LIS algorithm implementation competitive with the highly optimized Schensted’s algorithm in practice.
 
-In this work, we diverge from large-scale parallelism models and evaluate the performance of a "Lean Engineering" dual-thread implementation of Schensted's algorithm (Schensted 2T).
+In this work, we diverge from large-scale parallelism models and evaluate the performance of a "Lean Engineering" dual-thread parallel implementation of Schensted's algorithm (Schensted 2T).
 By leveraging a symmetric architecture and a completely lock-free $O(k)$ merge step, we experimentally evaluated the algorithm on the exact benchmarking standards (range and line data patterns) established by Gu et al. 
 
 Measurements demonstrate that Schensted 2T:
