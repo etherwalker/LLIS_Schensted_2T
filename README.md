@@ -527,6 +527,3 @@ cat input_data_one_integer_per_line.txt | perf stat -e energy-pkg ./test_lis -si
 
 ## License
 This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this software, provided that the original copyright notice is retained.
-
-## How to Cite
-[![DOI](https://zenodo.org/badge/1315429849.svg)](https://doi.org/10.5281/zenodo.21681413)
