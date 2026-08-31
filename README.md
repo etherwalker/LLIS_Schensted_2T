@@ -75,7 +75,7 @@ $$k = \max \\{ i + j \mid \text{min}\\_\\text{tails}[i] < \text{max}\\_\\text{he
 
 This can be achieved elegantly and efficiently via a merge-like process.
 
-The following code snippet demonstrates the core logic of Schensted's 2T $O(k)$ merge process. The full implementation, including the data generation step, can be found in [`src/test_lis.cpp`](src/test_lis.cpp). A header-only implementation with generic stl-style interface can be found in [`lib/schensted.hpp`](lib/schensted.hpp).
+The following code snippet demonstrates the core logic of Schensted's 2T $O(k)$ merge process. The full implementation, including the data generation step, can be found in [`src/test_lis.cpp`](src/test_lis.cpp). A header-only implementation with generic STL-style interface can be found in [`lib/schensted.hpp`](lib/schensted.hpp).
 
 ```cpp
 if ( min_tails[left_lis_len] < max_heads[right_lis_len] )
