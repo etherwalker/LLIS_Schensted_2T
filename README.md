@@ -1,4 +1,4 @@
-# Schensted’s Algorithm for Longest Increasing Subsequence (LIS) on Two Threads
+# [Schensted’s Algorithm for Longest Increasing Subsequence (LIS) on Two Threads](https://github.com/etherwalker/LLIS_Schensted_2T)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Language](https://img.shields.io/badge/C%2B%2B-11%2B-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Linux%20%2F%20x86__64-lightgrey.svg)
