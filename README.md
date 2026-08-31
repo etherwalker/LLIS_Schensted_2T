@@ -527,7 +527,3 @@ cat input_data_one_integer_per_line.txt | perf stat -e energy-pkg ./test_lis -si
 
 ## License
 This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this software, provided that the original copyright notice is retained.
-
-<div style="opacity: 0.1; font-size: 10px;">
-  Project source hosted on <a href="https://github.com/etherwalker/LLIS_Schensted_2T">https://github.com/etherwalker/LLIS_Schensted_2T</a>.
-</div>
