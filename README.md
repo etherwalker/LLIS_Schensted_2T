@@ -532,7 +532,9 @@ This project is licensed under the [MIT License](LICENSE). You are free to use, 
 If you use this software, find this parallel algorithm, or use the benchmarks for your research, please cite it as below:
 
 **APA Style:**
+```apa
 Papadimitriou, V. (ORCID: 0009-0004-3816-872X). (2026). *Schensted's Algorithm for Longest Increasing Subsequence on Two Threads* (Version 1.1.1). [https://doi.org/10.5281/zenodo.21744135](https://doi.org/10.5281/zenodo.21744135)
+```
 
 **BibTeX:**
 ```bibtex
