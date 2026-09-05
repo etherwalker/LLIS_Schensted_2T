@@ -529,7 +529,7 @@ cat input_data_one_integer_per_line.txt | perf stat -e energy-pkg ./test_lis -si
 This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this software, provided that the original copyright notice is retained.
 
 ## How to cite
-If you use this software, find this parallel algorithm, or use the benchmarks for your research, please cite it as below:
+If you use this algorithm, benchmark suite, or microarchitectural analysis in your research, please cite our Zenodo artifact:
 
 **APA Style:**
 ```apa
