@@ -527,3 +527,26 @@ cat input_data_one_integer_per_line.txt | perf stat -e energy-pkg ./test_lis -si
 
 ## License
 This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this software, provided that the original copyright notice is retained.
+
+## How to cite
+If you use this software, find this parallel algorithm, or use the benchmarks for your research, please cite it as below:
+
+**APA Style:**
+Papadimitriou, V. (ORCID: 0009-0004-3816-872X). (2026). *Schensted's Algorithm for Longest Increasing Subsequence on Two Threads* (Version 1.1.1). [https://doi.org/10.5281/zenodo.21724295](https://doi.org/10.5281/zenodo.21724295)
+
+**BibTeX:**
+```bibtex
+@software{papadimitriou_2026_21744135,
+  author       = {Papadimitriou, Vassilis},
+  orcid        = {0009-0004-3816-872X},
+  title        = {Schensted's Algorithm for Longest Increasing Subsequence on Two Threads},
+  month        = aug,
+  year         = 2026,
+  publisher    = {Zenodo},
+  version      = {1.1.1},
+  doi          = {10.5281/zenodo.21744135},
+  url          = {https://github.com/etherwalker/LLIS_Schensted_2T},
+  keywords     = {longest increasing subsequence, parallel algorithms, schensted algorithm, memory-level parallelism, latency hiding},
+  license      = {MIT}
+}
+```
