@@ -4,6 +4,7 @@
 ![Platform](https://img.shields.io/badge/Platform-Linux%20%2F%20x86__64-lightgrey.svg)
 ![Architecture](https://img.shields.io/badge/Architecture-Lock--Free-success.svg)
 [![DOI](https://zenodo.org/badge/1315429849.svg)](https://doi.org/10.5281/zenodo.21681412)
+<a href="https://doi.org/10.5281/zenodo.21681412"><img src="https://zenodo.org/badge/1315429849.svg" alt="DOI"></a>
 
 ## Quick Start
 
